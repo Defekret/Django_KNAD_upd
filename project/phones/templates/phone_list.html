@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2 class="content-title">Каталог</h2>
+  {% if phone_list %}
+    <ul class="phone-list">
+
+      {% for phone in phone_list %}
+        <li class="phone-card">
+          <a href="{{ phone.get_absolute_url }}">
+            <img
+              src="{{ phone.image.url }}"
+              alt="{{ phone.model_name }}"
+              width="120" height="160"
+            />
+            <p>{{ phone.brand }} {{ phone.model_name }}</p>
+            <span>{{ phone.price }} ₽</span>
+          </a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  {% else %}
+    <p>Очень жаль, все телефоны закончились.</p>
+  {% endif %}
+{% endblock %}

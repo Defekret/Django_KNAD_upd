@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2 class="content-title">Выберите два телефона для сравнения</h2>
+  <form class="compare-form" action="{% url 'compare' %}" method="post">
+    {% csrf_token %}
+    <div class="compare-card">
+      {% if phone_one.image.url %}
+        <img
+          src="{{ phone_one.image.url }}"
+          alt="{{ phone_one.model_name }}"
+          width="120" height="160"
+        />
+      {% else %}
+        {% load static %}
+        <img
+          style="opacity: 0.2;"
+          src="{% static 'phone-icon.png' %}"
+          alt="Телефон"
+          width="120" height="160"
+        />
+      {% endif %}
+      {{ form.phone_one }}
+    </div>
+    <div class="compare-card">
+      {% if phone_two.image.url %}
+        <img
+          src="{{ phone_two.image.url  }}"
+          alt="{{ phone_two.model_name }}"
+          width="120" height="160"
+        />
+      {% else %}
+        {% load static %}
+        <img
+          style="opacity: 0.2;"
+          src="{% static 'phone-icon.png' %}"
+          alt="Телефон"
+          width="120" height="160"
+        />
+      {% endif %}
+      {{ form.phone_two }}
+    </div>
+  </form>
+
+  <table class="compare-table">
+    <tbody>
+      <tr>
+        <td>Стоимость</td>
+        <td class="value {% if best_price and best_price == phone_one.price %}best{% endif %}">
+          {% if phone_one.price %}{{ phone_one.price }} ₽{% endif %}
+        </td>
+        <td class="value {% if best_price and best_price == phone_two.price %}best{% endif %}">
+          {% if phone_two.price %}{{ phone_two.price }} ₽{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>Дисплей</td>
+        <td class="value {% if best_screen_size and best_screen_size == phone_one.screen_size %}best{% endif %}">
+          {% if phone_one.screen_size %}{{ phone_one.screen_size }}"{% endif %}
+        </td>
+        <td class="value {% if best_screen_size and best_screen_size == phone_two.screen_size %}best{% endif %}">
+          {% if phone_two.screen_size %}{{ phone_two.screen_size }}"{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>Лучшая камера</td>
+        <td class="value {% if best_camera and best_camera == phone_one.camera_resolution %}best{% endif %}">
+          {% if phone_one.camera_resolution %}{{ phone_one.camera_resolution }} Мп{% endif %}
+        </td>
+        <td class="value {% if best_camera and best_camera == phone_two.camera_resolution %}best{% endif %}">
+          {% if phone_two.camera_resolution %}{{ phone_two.camera_resolution }} Мп{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>Память</td>
+        <td class="value {% if best_storage and best_storage == phone_one.storage %}best{% endif %}">
+          {% if phone_one.storage %}{{ phone_one.storage }} Гб{% endif %}
+        </td>
+        <td class="value {% if best_storage and best_storage == phone_two.storage %}best{% endif %}">
+          {% if phone_two.storage %}{{ phone_two.storage }} Гб{% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

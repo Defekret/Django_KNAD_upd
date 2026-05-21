@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <section class="detail-wrapper">
+    <div class="detail-image">
+      <img
+        src="{{ phone.image.url }}"
+        alt="{{ phone.model_name }}"
+        width="400" height="500"
+      />
+    </div>
+    <div class="detail-properties">
+      <h2>{{ phone.model_name }}</h2>
+      <p>Price: {{ phone.price }}</p>
+    </div>
+    <div class="detail-text">
+      <p>{{ phone.preview_text }}</p>
+    </div>
+  </section>
+{% endblock %}

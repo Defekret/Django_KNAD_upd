@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Phone Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body class="page-wrapper">
+    <header class="header-wrapper">
+        <h1 class="title">Магазинчик телефонов</h1>
+    </header>
+    <aside class="sidebar-wrapper">
+        <nav class="content-navigation">
+            <ul>
+              <li><a href="{% url 'phones' %}">Каталог</a></li>
+              <li><a href="{% url 'compare' %}">Сравнить</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="content-wrapper">
+
+        {% block content %}{% endblock %}
+
+    </main>
+</body>
+</html>
