@@ -160,4 +160,3 @@ docker compose up --build
 ```bash
 docker compose down
 ```
-# Django_KNAD_upd
